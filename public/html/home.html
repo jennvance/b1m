@@ -2,35 +2,53 @@
 <html ng-app="app">
 <head>
 	<title>Burn One Million Words</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/styles/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js" type="text/javascript"></script>
 </head>
 <body ng-controller="wordCountroller">
-	<h3>{{greeting}}</h3>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="centered-panel">
+					<h3>{{greeting}}</h3>
+					<h3>Hi, {{firstname}}! Enter Today's Word Count Here</h3>
+					<form class="count-form" name="countForm" ng-submit="submitCount()">
+						<div class="form-group">
+						<input class="form-control" type="text" required="true" ng-model="newCount.user" placeholder="Your name">
+						</div>
+						<div class="form-group">
+						<input class="form-control" type="number" required="true" ng-model="newCount.numWords" placeholder="How many words today?">
+						</div>
+						<div class="form-group">
+						<input class="form-control" type="date" required="true" ng-model="newCount.date" placeholder="Date?">
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="submit">
+						</div>
 
-	<form ng-submit="submitCount()">
-		<input ng-model="newCount.user" placeholder="Your name">
-		<input ng-model="newCount.numWords" placeholder="How many words today?">
-		<input ng-model="newCount.date" placeholder="Date?">
-		<input type="date"
-       ng-model="inputdate">
+				<!-- 		<div>{{month}}</div>
+						<div>{{day}}</div>
+						<div>{{year}}</div>
+						<p ng-bind="today | date:'MM/dd/yyyy'"></p> -->
+						
 
+					</form>
 
-		<div>{{month}}</div>
-		<div>{{day}}</div>
-		<div>{{year}}</div>
-		<p ng-bind="today | date:'MM/dd/yyyy'"></p>
-		<input type="submit">
-
-	</form>
-
-	<div>
-		<ul>
-			<li ng-repeat="count in wordcounts">
-				{{count.user}}
-				{{inputdate}}
-			</li>
-				
-		</ul>
+					<div>
+						<ul>
+							<li class="display-count" ng-repeat="count in wordcounts">
+								<p ng-bind="count.date | date:'MM/dd/yyyy'"></p>
+								<p ng-bind="count.numWords"></p>
+							</li>
+								
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
 	</div>
 
 <script src="/js/main.js" type="text/javascript"></script>
