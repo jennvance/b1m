@@ -9,6 +9,8 @@ module.exports = {
 	getCounts: function(req,res){
 		res.send(wdCtModel.dailyCounts)
 	}
+
+
 }
 
 
