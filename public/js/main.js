@@ -9,6 +9,7 @@ angular.module('app')
 		// $scope.day = $scope.today.getDate();
 		// $scope.month = $scope.today.getMonth() + 1;
 		// $scope.year = $scope.today.getFullYear();
+		$scope.total = 0;
 
 
 		$http.get('/getcounts')
@@ -23,6 +24,8 @@ angular.module('app')
 					// console.log( returnData.data )
 					$scope.wordcounts = returnData.data
 				})
+			$scope.total += $scope.newCount.numWords
+
 			$scope.firstname = $scope.newCount.user;
 			$scope.newCount = {};
 			$scope.countForm.$setPristine();

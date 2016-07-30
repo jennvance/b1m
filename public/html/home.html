@@ -38,13 +38,14 @@
 
 					<div>
 						<ul>
-							<li class="display-count" ng-repeat="count in wordcounts">
+							<li class="display-count" ng-repeat="count in wordcounts | orderBy: 'date'">
 								<p ng-bind="count.date | date:'MM/dd/yyyy'"></p>
 								<p ng-bind="count.numWords"></p>
 							</li>
 								
 						</ul>
 					</div>
+					<div>Total: {{total}}</div>
 				</div>
 			</div>
 			<div class="col-md-3"></div>
