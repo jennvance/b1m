@@ -23,8 +23,10 @@
 						<input class="form-control" type="number" required="true" ng-model="newCount.numWords" placeholder="How many words today?">
 						</div>
 						<div class="form-group">
-						<input class="form-control" type="date" required="true" ng-model="newCount.date" placeholder="Date?">
+						<input class="form-control" type="date" required="true" ng-init="newCount.date=(today)" ng-model="newCount.date">
 						</div>
+
+
 						<div class="form-group">
 							<input class="form-control" type="submit">
 						</div>

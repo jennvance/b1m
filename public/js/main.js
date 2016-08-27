@@ -5,7 +5,7 @@ angular.module('app')
 		$scope.greeting = '';
 		$scope.countForm = {};
 		$scope.firstname = "Friend";
-		// $scope.today = new Date();
+		$scope.today = new Date();
 		// $scope.day = $scope.today.getDate();
 		// $scope.month = $scope.today.getMonth() + 1;
 		// $scope.year = $scope.today.getFullYear();
@@ -52,15 +52,10 @@ angular.module('app')
 			}
 
 
-
-
-
 			$scope.firstname = $scope.newCount.user;
 			$scope.newCount = {};
 			$scope.countForm.$setPristine();
 
 		}
-
-
 
 	}])
