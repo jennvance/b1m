@@ -7,24 +7,12 @@ angular.module('app')
 		$scope.firstname = "Friend";
 		$scope.today = new Date();
 		// $scope.day = $scope.today.getDate();
-		// $scope.month = $scope.today.getMonth() + 1;
+		$scope.currentMonth = $scope.today.getMonth();
 		// $scope.year = $scope.today.getFullYear();
 		$scope.total = 0;
 
-			$scope.months = {
-				0: [],
-				1: [],
-				2: [],
-				3: [],
-				4: [],
-				5: [],
-				6: [],
-				7: [],
-				8: [],
-				9: [],
-				10: [],
-				11: []
-			}
+			$scope.months = [0,0,0,0,0,0,0,0,0,0,0,0]
+			
 
 
 		$http.get('/getcounts')
@@ -44,12 +32,12 @@ angular.module('app')
 			$scope.month = $scope.newCount.date.getMonth();
 
 
-
-			if($scope.month in $scope.months){
-				$scope.months[$scope.month].push($scope.newCount);
+				$scope.months[$scope.month] += $scope.newCount.numWords;
 				console.log($scope.months)
 
-			}
+				$scope.thisMonthsTotal = $scope.months[$scope.currentMonth];
+
+
 
 
 			$scope.firstname = $scope.newCount.user;
