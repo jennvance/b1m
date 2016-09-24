@@ -19,6 +19,8 @@ app.get('/', function(req, res){
 
 app.post('/addcount', wordCountroller.addDailyWdCt)
 app.get('/getcounts', wordCountroller.getCounts)
+app.post('/addgoal', wordCountroller.addGoal)
+app.get('/getgoal', wordCountroller.getGoal)
 
 
 

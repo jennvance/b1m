@@ -7,14 +7,12 @@ angular.module('app')
 		$scope.firstname = "Friend";
 		$scope.today = new Date();
 		// $scope.day = $scope.today.getDate();
-		$scope.currentMonth = $scope.today.getMonth();
+		$scope.todaysMonth = $scope.today.getMonth();
 		// $scope.year = $scope.today.getFullYear();
-		$scope.total = 0;
-
-			$scope.months = [0,0,0,0,0,0,0,0,0,0,0,0]
+		$scope.grandTotal = 0;
+		$scope.thisMonthsTotal = 0;
+		$scope.monthlyTotals = [0,0,0,0,0,0,0,0,0,0,0,0]
 			
-
-
 		$http.get('/getcounts')
 			.then(function(returnData){
 				$scope.wordcounts = returnData.data
@@ -24,25 +22,45 @@ angular.module('app')
 		$scope.submitCount = function(){
 			$http.post('/addcount', $scope.newCount)
 				.then(function(returnData){
-					// console.log( returnData.data )
+					 console.log( returnData.data )
 					$scope.wordcounts = returnData.data
 				})
-			$scope.total += $scope.newCount.numWords;
-
+			$scope.grandTotal += $scope.newCount.numWords;
 			$scope.month = $scope.newCount.date.getMonth();
-
-
-				$scope.months[$scope.month] += $scope.newCount.numWords;
-				console.log($scope.months)
-
-				$scope.thisMonthsTotal = $scope.months[$scope.currentMonth];
-
-
-
-
+			$scope.monthlyTotals[$scope.month] += $scope.newCount.numWords;
+			console.log($scope.monthlyTotals)
+			$scope.thisMonthsTotal = $scope.monthlyTotals[$scope.todaysMonth];
 			$scope.firstname = $scope.newCount.user;
 			$scope.newCount = {};
 			$scope.countForm.$setPristine();
+
+		}
+
+		$http.get('/getgoal')
+			.then(function(returnData){
+				$scope.wordgoal = returnData.data
+			})
+
+		$scope.submitGoal = function(){
+
+			$http.post('/addgoal', $scope.newGoal)
+				.then(function(returnData){
+					console.log(returnData.data.date)
+					$scope.wordgoal = returnData.data
+					console.log($scope.wordgoal)
+					$scope.goalDate = $scope.wordgoal.date;
+					$scope.numWords = $scope.wordgoal.numWords;
+					//$scope.wordsLeft = calculation...
+					//$scope.wordsPerDay = calculation...
+					console.log($scope.goalDate)
+					console.log($scope.numWords)
+					//console.log($scope.wordsPerDay)	
+
+
+
+				})
+
+
 
 		}
 

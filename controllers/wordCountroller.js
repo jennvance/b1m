@@ -8,6 +8,13 @@ module.exports = {
 
 	getCounts: function(req,res){
 		res.send(wdCtModel.dailyCounts)
+	},
+	addGoal: function(req, res){
+		var goal = new wdCtModel.WordGoal(req.body)
+		res.send(goal)
+	},
+	getGoal: function(req, res){
+		res.send(wdCtModel.WordGoal)
 	}
 
 

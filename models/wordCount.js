@@ -7,7 +7,15 @@ var WordCount = function(wdCtData){
 	dailyCounts.push(this);
 }
 
+var WordGoal = function(goalData){
+	this.date = goalData.date;
+	this.numWords = goalData.numWords;
+	//this.wordsLeft = goalData.wordsLeft;
+	//this.wordsPerDay = goalData.wordsPerDay;
+}
+
 module.exports = {
 	dailyCounts: dailyCounts,
-	WordCount: WordCount
+	WordCount: WordCount,
+	WordGoal: WordGoal
 }
